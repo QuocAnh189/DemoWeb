@@ -4,7 +4,7 @@ import { NextResponse } from 'next/server';
 
 export async function GET() {
     try {
-        await sql`DROP TABLE bubu`;
+        await sql`DROP TABLE ooo`;
         revalidatePath('/home');
         return NextResponse.json({ message: 'Delete Successfully' }, { status: 200 });
     } catch (error) {
