@@ -14,30 +14,24 @@ import {
   Divider,
   Avatar,
 } from "@chakra-ui/react";
-import Image from "next/image";
+// import Image from "next/image";
 // import ITask from "src/style";
 import { IBlog } from "src/style";
 import { useEffect, useState } from "react";
+import { Image } from "@chakra-ui/react";
 import { EditIcon, ViewIcon } from "@chakra-ui/icons";
-const CardItem = () => {
-  // const [task, setTask] = useState<ITask[]>();
 
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     const response = await fetch(`http://localhost:3001/tasks`);
-  //     const newData = await response.json();
-  //     setTask(newData);
-  //   };
-
-  //   fetchData();
-  // }, []);
-
+interface CartBlogProp {
+  ex: IBlog;
+}
+const CardItem = (props: CartBlogProp) => {
+  const { ex } = props;
   return (
-    <Card  borderTop="8px" borderColor="purple.400" bg="white">
+    <Card borderTop="8px" borderColor="purple.400" bg="white">
       <CardHeader>
         <Flex gap={5}>
           {/* <Avatar src={task.img}/> */}
-          <Avatar />
+          <Avatar src={ex.avatar} />
           <Box>
             <Heading as="h3" size="sm">
               {/* {task.title} */}
@@ -49,6 +43,7 @@ const CardItem = () => {
         </Flex>
       </CardHeader>
       <CardBody color="gray.500">
+        <Image src={ex.avatar} alt="" />
         {/* <Text>{task.description}</Text> */}
         <Text>Hello everyone today i feel so good</Text>
       </CardBody>

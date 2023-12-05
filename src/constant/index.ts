@@ -1,1 +1,1 @@
-export const Table = 'faker'
+export const Table = 'ooo'
