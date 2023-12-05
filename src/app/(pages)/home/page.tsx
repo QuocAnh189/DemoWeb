@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 //chakra
-import { SimpleGrid, Text} from "@chakra-ui/react";
+import { SimpleGrid, Text } from "@chakra-ui/react";
 
 //component
 import CardItem from "src/components/Card";
@@ -25,6 +25,7 @@ const Home = () => {
   useEffect(() => {
     getExs()
       .then((res) => {
+        console.log(res);
         setExs(res);
         dispatch(fetchBlogs(res));
       })
@@ -36,37 +37,42 @@ const Home = () => {
 
   const blogs = useAppSelector((state) => state.blog.blogs);
   useEffect(() => {
-      setExs(blogs);
+    setExs(blogs);
   }, [blogs]);
 
   const handleChange = (e: React.ChangeEvent<any>) => {
-      const contains = ({ name }: { name: any }, query: string) => {
-          if (name.toLowerCase().includes(query)) {
-              return true;
-          }
-          return false;
-      };
+    const contains = ({ name }: { name: any }, query: string) => {
+      if (name.toLowerCase().includes(query)) {
+        return true;
+      }
+      return false;
+    };
 
-      const value = e.target.value;
-      const formatQuery = value.toLowerCase();
-      const filterData = filter(blogs, (category) => {
-          return contains(category, formatQuery);
-      });
-      setExs(filterData);
+    const value = e.target.value;
+    const formatQuery = value.toLowerCase();
+    const filterData = filter(blogs, (category) => {
+      return contains(category, formatQuery);
+    });
+    setExs(filterData);
   };
 
   return (
-    <SimpleGrid columns={4} p="10px" spacing={10} minChildWidth="300px">
-      {/* <CardItem />
-      <CardItem />
-      <CardItem />
-      <CardItem />
-      <CardItem />
-      <CardItem />
-      <CardItem />
-      <CardItem /> */}
-      {exs.length !== 0 ? exs.map((ex: IBlog) => <CardItem key={ex?._id} ex={ex} />) : <Text>No result</Text>}
-    </SimpleGrid>
+    // <SimpleGrid columns={4} p="10px" spacing={10} minChildWidth="300px">
+    //   {/* <CardItem />
+    //   <CardItem />
+    //   <CardItem />
+    //   <CardItem />
+    //   <CardItem />
+    //   <CardItem />
+    //   <CardItem />
+    //   <CardItem /> */}
+    //   {exs ? (
+    //     exs.map((ex: IBlog) => <CardItem key={ex?._id} ex={ex} />)
+    //   ) : (
+    //     <Text>No result</Text>
+    //   )}
+    // </SimpleGrid>
+    <Text>No result</Text>
   );
 };
 

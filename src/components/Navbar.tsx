@@ -18,6 +18,8 @@ import {
 //redux
 import { useAppSelector } from "src/redux/hooks";
 
+
+
 const Navbar = () => {
   const toast = useToast();
 
@@ -40,7 +42,7 @@ const Navbar = () => {
       <Heading as="h1">{title}</Heading>
       <Spacer />
       <HStack spacing="20px" wrap="wrap">
-        <Avatar src="/img/mario.png">
+        <Avatar src="https://res.cloudinary.com/dadvtny30/image/upload/v1701680700/68a335b119a2ddc35160e01747569da5nrhyh_xq7999.png">
           <AvatarBadge width="1.3em" bg="teal.500">
             <Text fontSize="xs" color="white">
               3
