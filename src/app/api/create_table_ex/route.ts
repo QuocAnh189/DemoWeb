@@ -10,7 +10,6 @@ export async function GET() {
     revalidatePath("/home");
     return NextResponse.json({ result }, { status: 200 });
   } catch (error) {
-    console.log(error);
     return NextResponse.json({ error }, { status: 500 });
   }
 }

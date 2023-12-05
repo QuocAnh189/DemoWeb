@@ -17,7 +17,6 @@ export async function GET() {
         revalidatePath('/home');
         return NextResponse.json({ message: 'Import successfully' }, { status: 200 });
     } catch (error) {
-        console.log({ error });
         return `Failed ${JSON.stringify(error)}`;
     }
 }
