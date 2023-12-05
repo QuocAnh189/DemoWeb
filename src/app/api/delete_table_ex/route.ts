@@ -1,8 +1,6 @@
 import { sql } from '@vercel/postgres';
 import { revalidatePath } from 'next/cache';
 import { NextResponse } from 'next/server';
-import { Table } from 'src/constant';
-
 
 export async function GET() {
     try {
