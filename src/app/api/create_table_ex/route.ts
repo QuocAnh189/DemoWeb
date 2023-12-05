@@ -6,7 +6,7 @@ import { revalidatePath } from "next/cache";
 export async function GET() {
   try {
     const result =
-      await sql`CREATE TABLE bui (_id varchar(255), avatar varchar(255), name varchar(255), description varchar(255), age int, dislike boolean ,CreatedAt TIMESTAMP );`;
+      await sql`CREATE TABLE myex (_id varchar(255), avatar varchar(255), name varchar(255), description varchar(255), age int, dislike boolean ,CreatedAt TIMESTAMP );`;
     revalidatePath("/home");
     return NextResponse.json({ result }, { status: 200 });
   } catch (error) {
