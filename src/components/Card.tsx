@@ -42,8 +42,7 @@ const CardItem = (props: CartBlogProp) => {
             <Heading as="h3" size="sm">
               {ex.name}
             </Heading>
-            {/* <Text>by {task.author}</Text> */}
-            <Text>by Anh Quoc</Text>
+            <Text>Age: {ex.age}</Text>
           </Box>
         </Flex>
       </CardHeader>
