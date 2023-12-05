@@ -16,7 +16,6 @@ import { changeDisLikeEx } from 'src/app/actions';
 //redux
 import { useAppDispatch } from 'src/redux/hooks';
 import { updateBlog } from 'src/redux/slices/blogSlice';
-// import { InitBlog } from 'src/styles/blog';
 import { InitBlog } from 'src/style';
 import avatar from '../../public/avatar.png';
 import { IBlog } from 'src/style';

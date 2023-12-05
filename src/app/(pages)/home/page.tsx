@@ -2,7 +2,16 @@
 
 import { useState, useEffect } from "react";
 //chakra
-import { SimpleGrid, Text } from "@chakra-ui/react";
+import {
+  Button,
+  Input,
+  InputGroup,
+  InputLeftElement,
+  InputRightAddon,
+  SimpleGrid,
+  Text,
+} from "@chakra-ui/react";
+import { Icon, Search2Icon } from "@chakra-ui/icons";
 
 //component
 import CardItem from "src/components/Card";
@@ -29,7 +38,8 @@ const Home = () => {
         setExs(res);
         dispatch(fetchBlogs(res));
       })
-      .catch(() => {
+      .catch((e) => {
+        console.log(e);
         setExs([]);
         dispatch(fetchBlogs([]));
       });
@@ -57,22 +67,33 @@ const Home = () => {
   };
 
   return (
-    // <SimpleGrid columns={4} p="10px" spacing={10} minChildWidth="300px">
-    //   {/* <CardItem />
-    //   <CardItem />
-    //   <CardItem />
-    //   <CardItem />
-    //   <CardItem />
-    //   <CardItem />
-    //   <CardItem />
-    //   <CardItem /> */}
-    //   {exs ? (
-    //     exs.map((ex: IBlog) => <CardItem key={ex?._id} ex={ex} />)
-    //   ) : (
-    //     <Text>No result</Text>
-    //   )}
-    // </SimpleGrid>
-    <Text>No result</Text>
+    <>
+      <InputGroup borderRadius={5} size="sm" w="300px" position="absolute" right="20">
+        <Input
+          type="text"
+          placeholder="Search..."
+          border="1px solid #949494"
+          onChange={(e) => handleChange(e)}
+        />
+        <InputRightAddon p={0} border="none">
+          <Button
+            size="sm"
+            borderLeftRadius={0}
+            borderRightRadius={3.3}
+            border="1px solid #949494"
+          >
+            Search
+          </Button>
+        </InputRightAddon>
+      </InputGroup>
+      <SimpleGrid mt="100px" columns={4} p="10px" spacing={10} minChildWidth="300px">
+        {exs.length ? (
+          exs.map((ex: IBlog) => <CardItem key={ex?._id} ex={ex} />)
+        ) : (
+          <Text>No result</Text>
+        )}
+      </SimpleGrid>
+    </>
   );
 };
 

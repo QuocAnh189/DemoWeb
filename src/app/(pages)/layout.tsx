@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-// import "../";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -10,7 +9,7 @@ export const metadata: Metadata = {
 };
 
 import { Providers } from "../provider";
-  
+import 'bootstrap/dist/css/bootstrap.min.css';
 import Navbar from "src/components/Navbar";
 import { Grid, GridItem } from "@chakra-ui/react";
 import Sidebar from "src/components/Sidebar";

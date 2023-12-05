@@ -13,6 +13,7 @@ import {
   Button,
   Divider,
   Avatar,
+  Icon,
 } from "@chakra-ui/react";
 // import Image from "next/image";
 // import ITask from "src/style";
@@ -21,43 +22,63 @@ import { useEffect, useState } from "react";
 import { Image } from "@chakra-ui/react";
 import { EditIcon, ViewIcon } from "@chakra-ui/icons";
 
+//react-icon
+import { AiOutlineLike, AiOutlineDislike } from "react-icons/ai";
+import Link from "next/link";
+
+//image
+import imgDefault from "../../public/avatar.png";
 interface CartBlogProp {
   ex: IBlog;
 }
 const CardItem = (props: CartBlogProp) => {
   const { ex } = props;
   return (
-    <Card borderTop="8px" borderColor="purple.400" bg="white">
+    <Card borderTop="8px" borderColor="purple.400" bg="white" maxW="400px">
       <CardHeader>
         <Flex gap={5}>
-          {/* <Avatar src={task.img}/> */}
           <Avatar src={ex.avatar} />
           <Box>
             <Heading as="h3" size="sm">
-              {/* {task.title} */}
-              Anh Quốc
+              {ex.name}
             </Heading>
             {/* <Text>by {task.author}</Text> */}
-            <Text>by Vương Duy</Text>
+            <Text>by Anh Quoc</Text>
           </Box>
         </Flex>
       </CardHeader>
       <CardBody color="gray.500">
-        <Image src={ex.avatar} alt="" />
-        {/* <Text>{task.description}</Text> */}
-        <Text>Hello everyone today i feel so good</Text>
+        <Image
+          src={
+            ex.avatar
+              ? ex.avatar
+              : "https://res.cloudinary.com/dfl3qnj7z/image/upload/v1699413453/z9epffilyf4of4d2skql.jpg"
+          }
+          alt=""
+          w="full"
+          h="200px"
+          objectFit="contain"
+        />
+        <Text>Description: {ex.description}</Text>
       </CardBody>
 
       <Divider />
 
       <CardFooter>
         <HStack>
-          <Button variant="ghost" leftIcon={<ViewIcon />}>
+          <Button
+            as={Link}
+            variant="ghost"
+            leftIcon={<ViewIcon />}
+            href={`/${ex?._id}`}
+          >
             Watch
           </Button>
-          <Button variant="ghost" leftIcon={<EditIcon />}>
-            Comment
-          </Button>
+          {ex.dislike ? (
+            <Icon as={AiOutlineDislike} bgSize="xl" />
+          ) : (
+            <Icon as={AiOutlineLike} />
+          )}
         </HStack>
       </CardFooter>
     </Card>

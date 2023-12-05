@@ -6,7 +6,7 @@ import { Table } from 'src/constant';
 
 export async function GET() {
     try {
-        await sql`DROP TABLE ${Table}`;
+        await sql`DROP TABLE bubu`;
         revalidatePath('/home');
         return NextResponse.json({ message: 'Delete Successfully' }, { status: 200 });
     } catch (error) {
