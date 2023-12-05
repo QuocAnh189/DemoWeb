@@ -1,17 +1,19 @@
-import { sql } from '@vercel/postgres';
-import { NextResponse } from 'next/server';
-import { v4 as uuidv4 } from 'uuid';
-import { revalidatePath } from 'next/cache';
-import { Table } from 'src/constant';
+import { sql } from "@vercel/postgres";
+import { NextResponse } from "next/server";
+import { v4 as uuidv4 } from "uuid";
+import { revalidatePath } from "next/cache";
+import { Table } from "src/constant";
 
 export async function GET() {
-    try {
-        const res =    await sql`INSERT INTO ${Table} (_id, avatar, name, description, age, dislike, CreatedAt) VALUES (${uuidv4()},'https://res.cloudinary.com/dfl3qnj7z/image/upload/v1699412622/334051984_3538504303032537_58771249030900257_n_lz9ove.jpg','Trương Nguyễn Phước Trí','Bạn này đến từ Huế mộng mơ nhưng không mơ mộng như tôi nghĩ , thật thất vọng khi có mối tình như thế này',3,false,'4/13/2006');`;
-
-        revalidatePath('/home');
-        return NextResponse.json({ res }, { status: 200 });
-    } catch (error) {
-        console.log({ error });
-        return `Failed ${JSON.stringify(error)}`;
-    }
+  try {
+    await sql`DROP TABLE ${Table}`;
+    revalidatePath("/home");
+    return NextResponse.json(
+      { message: "Delete Successfully" },
+      { status: 200 }
+    );
+  } catch (error) {
+    console.log({ error });
+    return `Failed ${JSON.stringify(error)}`;
+  }
 }
