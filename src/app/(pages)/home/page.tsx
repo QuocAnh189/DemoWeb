@@ -10,6 +10,8 @@ import {
   InputRightAddon,
   SimpleGrid,
   Text,
+  Stack,
+  Skeleton,
 } from "@chakra-ui/react";
 import { Icon, Search2Icon } from "@chakra-ui/icons";
 
@@ -30,16 +32,15 @@ import { IBlog } from "src/style";
 const Home = () => {
   const dispatch = useAppDispatch();
   const [exs, setExs] = useState<IBlog[]>([]);
+  const [result, setResult] = useState<boolean>(true);
 
   useEffect(() => {
     getExs()
       .then((res) => {
-        console.log(res);
         setExs(res);
         dispatch(fetchBlogs(res));
       })
       .catch((e) => {
-        console.log(e);
         setExs([]);
         dispatch(fetchBlogs([]));
       });
@@ -63,12 +64,27 @@ const Home = () => {
     const filterData = filter(blogs, (category) => {
       return contains(category, formatQuery);
     });
+    if(filterData.length===0){
+      setResult(false);
+    }
     setExs(filterData);
   };
 
+  // useEffect(() => {
+  //   if (exs.length === 0) {
+  //     setResult(false);
+  //   }
+  // }, [exs]);
+
   return (
     <>
-      <InputGroup borderRadius={5} size="sm" w="300px" position="absolute" right="20">
+      <InputGroup
+        borderRadius={5}
+        size="sm"
+        w="300px"
+        position="absolute"
+        right="20"
+      >
         <Input
           type="text"
           placeholder="Search..."
@@ -86,11 +102,23 @@ const Home = () => {
           </Button>
         </InputRightAddon>
       </InputGroup>
-      <SimpleGrid mt="100px" columns={4} p="10px" spacing={10} minChildWidth="300px">
-        {exs.length ? (
-          exs.map((ex: IBlog) => <CardItem key={ex?._id} ex={ex} />)
+      <SimpleGrid
+        mt="100px"
+        columns={4}
+        p="10px"
+        spacing={10}
+        minChildWidth="300px"
+      >
+        {exs?.length ? (
+          exs?.map((ex: IBlog) => <CardItem key={ex?._id} ex={ex} />)
+        ) : !result ? (
+          <Text>Result</Text>
         ) : (
-          <Text>No result</Text>
+          <Stack>
+            <Skeleton height="20px" />
+            <Skeleton height="20px" />
+            <Skeleton height="20px" />
+          </Stack>
         )}
       </SimpleGrid>
     </>
