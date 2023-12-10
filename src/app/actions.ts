@@ -3,12 +3,12 @@
 import { sql } from "@vercel/postgres";
 import { revalidatePath } from "next/cache";
 import { IBlog } from "src/style";
-// import { process.env.TABLE } from "src/constant";
+// import { process.env.congngheweb } from "src/constant";
 
 export const getEx = async (id: string) => {
   try {
     const data: any =
-      await sql`SELECT * FROM table WHERE _id=${id}`;
+      await sql`SELECT * FROM congngheweb WHERE _id=${id}`;
     const { rows: ex } = data;
     return ex;
   } catch (error) {
@@ -18,7 +18,7 @@ export const getEx = async (id: string) => {
 
 export const getExs = async () => {
   try {
-    const data: any = await sql`SELECT * FROM table`;
+    const data: any = await sql`SELECT * FROM congngheweb`;
     const { rows: exs } = data;
     return exs;
   } catch (error) {
@@ -29,7 +29,7 @@ export const getExs = async () => {
 
 export const createEx = async (formValues: IBlog) => {
   try {
-    const result = await sql`INSERT INTO table (_id, avatar, name, description, age, CreatedAt) VALUES (${
+    const result = await sql`INSERT INTO congngheweb (_id, avatar, name, description, age, CreatedAt) VALUES (${
       formValues._id
     },${formValues.avatar},${formValues.name},${formValues.description},${
       formValues.age
@@ -44,7 +44,7 @@ export const createEx = async (formValues: IBlog) => {
 
 export const updateEx = async (blog: IBlog) => {
   try {
-    await sql`UPDATE table SET name=${blog.name},avatar=${blog.avatar},age=${blog.age},description=${blog.description} WHERE _id = ${blog._id}`;
+    await sql`UPDATE congngheweb SET name=${blog.name},avatar=${blog.avatar},age=${blog.age},description=${blog.description} WHERE _id = ${blog._id}`;
     revalidatePath("/home");
     return "success";
   } catch (error) {
@@ -55,7 +55,7 @@ export const updateEx = async (blog: IBlog) => {
 
 export const changeDisLikeEx = async (id: string, dislike: boolean) => {
   try {
-    await sql`UPDATE table SET dislike = ${dislike} WHERE _id = ${id}`;
+    await sql`UPDATE congngheweb SET dislike = ${dislike} WHERE _id = ${id}`;
     revalidatePath("/home");
     return "success";
   } catch (error) {
@@ -66,7 +66,7 @@ export const changeDisLikeEx = async (id: string, dislike: boolean) => {
 
 export const deleteEx = async (id: string) => {
   try {
-    await sql`DELETE FROM table WHERE _id=${id};`;
+    await sql`DELETE FROM congngheweb WHERE _id=${id};`;
     revalidatePath("/home");
     return "Success";
   } catch (error) {
