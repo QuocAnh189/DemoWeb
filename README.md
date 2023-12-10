@@ -17,8 +17,8 @@ bun dev
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
 First you mush deploy your database with postgresql on Vercel
-Run with /api/create_table_ex
-Run with /api/import_data_ex
+## Run with /api/create_table_ex
+## Run with /api/import_data_ex
 
 You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
